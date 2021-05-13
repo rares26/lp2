@@ -9,27 +9,31 @@ canvas.pack() #initializare canvas
 butonCalculeaza = tk.Button(body,text="Calculeaza") #declarere buton
 butonCalculeaza.pack() #initializare buton
 
-textTitlu = tk.Text(body,height=1,width=18)
+textTitlu = tk.Text(body,height=1,width=21)
 textTitlu.place(x=280,y=1)
-textTitlu.insert(tk.END,"Calculator Calorii")
+textTitlu.insert(tk.END,"Calculator De Calorii")
+textTitlu.config(state=DISABLED)
 
 inputVarsta = Entry(body,width = 10) #declarere inputVarsta
 inputVarsta.place(x=90, y=100) #initializare inputVarsta
 textVarsta = tk.Text(body,height=1,width=7)
 textVarsta.place(x=15, y=100)
 textVarsta.insert(tk.END,"Varsta:")
+textVarsta.config(state=DISABLED)
 
 inputGreutate = Entry(body,width = 10)
 inputGreutate.place(x=110, y=150)
 textGreutate = tk.Text(body,height=1,width=9)
 textGreutate.place(x=15, y=150)
 textGreutate.insert(tk.END,"Greutate:")
+textGreutate.config(state=DISABLED)
 
 inputInaltime = Entry(body,width = 10)
 inputInaltime.place(x=110, y=200)
 textInaltime = tk.Text(body,height=1,width=9)
 textInaltime.place(x=15, y=200)
 textInaltime.insert(tk.END,"Inaltime:")
+textInaltime.config(state=DISABLED)
 
 inputActivitate = Menubutton(body,text="Activitate",width = 12)
 inputActivitate.place(x=130, y=250)
@@ -46,6 +50,7 @@ inputActivitate.menu.add_checkbutton(label="Foarte Activ",variable=fActivVar)
 textActivitate = tk.Text(body,height=1,width=12)
 textActivitate.place(x=15, y=250)
 textActivitate.insert(tk.END,"Activitate:")
+textActivitate.config(state=DISABLED)
 
 barbat=tk.BooleanVar()
 femeie=tk.BooleanVar()
@@ -56,6 +61,7 @@ checkFemeie.place(x=220,y=300)
 textInaltime = tk.Text(body,height=1,width=9)
 textInaltime.place(x=15, y=300)
 textInaltime.insert(tk.END,"Sex:")
+textInaltime.config(state=DISABLED)
 
 
 
