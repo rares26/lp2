@@ -56,3 +56,4 @@ def Așteptări(Nivelul_de_activitate):
 
 
 Așteptări(Activitatea_utilizatorului(Date_despre_utilizator()))
+#
