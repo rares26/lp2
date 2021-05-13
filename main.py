@@ -1,20 +1,20 @@
-# BMR = Rata metabolică bazală
+from interfata import inputVarsta
 def Date_despre_utilizator():
-    vârsta = int ( input (' Introduceți vârsta dumneavoastră: '))
-    sex = input ( ' Introduceți sexul dumneavoastră : ')
+    varsta = inputVarsta.getint()
+    sex = input ( ' Introduceti sexul dumneavoastră : ')
     greutatea = int ( input ( ' Introduceți greutatea dumneavoastră : '))
-    înălțimea = int ( input ( ' Introduceți înalțimea dumneavoastră : '))
+    inaltimea = int ( input ( ' Introduceți înalțimea dumneavoastră : '))
 
     if sex == 'Masculin':
         baza = 66.47
-        îm = 5.003 * înălțimea
+        îm = 5.003 * inaltimea
         gm = 13.75 * greutatea
-        vm = 6.755 * vârsta
+        vm = 6.755 * varsta
     elif sex == 'Feminin':
         baza = 655
-        îm = 1.850 * înălțimea
+        îm = 1.850 * inaltimea
         gm = 9.563 * greutatea
-        vm = 4.676 * vârsta
+        vm = 4.676 * varsta
 
     #BMR pentru barbați = 66.47 + (13.75 * greutatea [kg]) + (5.003 * înălțimea [cm]) − (6.755 * vârsta [ani])
     #BMR pentru femei = 655 + ( 9.563 × greutatea [kg] ) + ( 1.850 × înălțimea [cm] ) – ( 4.676 × vârsta [ani] )
@@ -29,7 +29,7 @@ def Activitatea_utilizatorului( rezultatul_bmr ):
     if Nivelul_de_activitate == 'sedentar':
         Nivelul_de_activitate = 1.23 * rezultatul_bmr
     elif Nivelul_de_activitate == 'activitatea redusa':
-        Nivelul_de_activitate = 1.4 * brezultatul_bmr
+        Nivelul_de_activitate = 1.4 * rezultatul_bmr
     elif Nivelul_de_activitate == 'activ':
         Nivelul_de_activitate = 1.6 * rezultatul_bmr
     elif Nivelul_de_activitate == 'foarte activ':
@@ -56,4 +56,4 @@ def Așteptări(Nivelul_de_activitate):
 
 
 Așteptări(Activitatea_utilizatorului(Date_despre_utilizator()))
-#
+
