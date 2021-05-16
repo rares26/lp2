@@ -1,59 +1,83 @@
-from interfata import inputVarsta
-def Date_despre_utilizator():
-    varsta = inputVarsta.getint()
-    sex = input ( ' Introduceti sexul dumneavoastră : ')
-    greutatea = int ( input ( ' Introduceți greutatea dumneavoastră : '))
-    inaltimea = int ( input ( ' Introduceți înalțimea dumneavoastră : '))
+import tkinter as tk
+from tkinter import *
 
-    if sex == 'Masculin':
-        baza = 66.47
-        îm = 5.003 * inaltimea
-        gm = 13.75 * greutatea
-        vm = 6.755 * varsta
-    elif sex == 'Feminin':
-        baza = 655
-        îm = 1.850 * inaltimea
-        gm = 9.563 * greutatea
-        vm = 4.676 * varsta
-
-    #BMR pentru barbați = 66.47 + (13.75 * greutatea [kg]) + (5.003 * înălțimea [cm]) − (6.755 * vârsta [ani])
-    #BMR pentru femei = 655 + ( 9.563 × greutatea [kg] ) + ( 1.850 × înălțimea [cm] ) – ( 4.676 × vârsta [ani] )
-
-    rezultatul_bmr = baza + îm + gm - vm
-    return ( int ( rezultatul_bmr ) )
-
-def Activitatea_utilizatorului( rezultatul_bmr ):
-    Nivelul_de_activitate = input('Nivelul dumneavoastră de activitate ( sedentar , activitatea redusa , activ , foarte activ ):')
+#Background
+body = Tk()
+body.geometry("500x500")
+body.title("Calculator de calorii")
+titlu = Label(text = "Calculator de calorii", fg ="blue", width="500",height="3")
+titlu.pack()
 
 
-    if Nivelul_de_activitate == 'sedentar':
-        Nivelul_de_activitate = 1.23 * rezultatul_bmr
-    elif Nivelul_de_activitate == 'activitatea redusa':
-        Nivelul_de_activitate = 1.4 * rezultatul_bmr
-    elif Nivelul_de_activitate == 'activ':
-        Nivelul_de_activitate = 1.6 * rezultatul_bmr
-    elif Nivelul_de_activitate == 'foarte activ':
-        Nivelul_de_activitate = 1.75 * rezultatul_bmr
+#Intrari_text
+
+varsta_text = Label(text = "Varsta:", fg ="blue")
+varsta_text.place(x=10,y=50)
+
+sex_text = Label(text = "Sex(M/F):", fg ="blue")
+sex_text.place(x=10,y=100)
+
+greutate_text = Label(text = "Greutate(kg):", fg ="blue")
+greutate_text.place(x=10,y=150)
+
+inaltime_text = Label(text = "Inaltime(cm):", fg ="blue")
+inaltime_text.place(x=10,y=200)
+
+activitate_text = Label(text = "Tipul activitatii fizice:", fg ="blue")
+activitate_text.place(x=10,y=250)
+
+scop_text = Label(text = "Scopul:", fg ="blue")
+scop_text.place(x=10,y=300)
+
+#Variabile
+varsta=IntVar()
+sex=StringVar()
+greutate=IntVar()
+inaltime=IntVar()
 
 
-    return ( int ( Nivelul_de_activitate ) )
+#Intrari_casete
+varsta_entry = Entry(text = varsta)
+sex_entry = Entry(text = sex)
+greutate_entry = Entry(text = greutate)
+inaltime_entry = Entry(text = inaltime)
 
-def Așteptări(Nivelul_de_activitate):
-    Scop = input('slabire , menținere , îngrășare : ')
+#VariabileActivitate
+sedentarVar=StringVar()
+activitateRedusaVar=StringVar()
+activVar=StringVar()
+fActivVar=StringVar()
 
-    if Scop == 'slabire':
-        calori = Nivelul_de_activitate - 500
-    elif Scop == 'menținere':
-        calori = Nivelul_de_activitate
-    elif Scop == 'îngrășare':
-        target = int ( input ( 'Doriți 1 sau 2 kg pe săptămână ') )
-        if target == 1:
-            calori = Nivelul_de_activitate + 500
-        elif target == 2:
-            calori = Nivelul_de_activitate + 1000
+inputActivitate = Menubutton(body,text="Activitate",width = 12)
+inputActivitate.menu = Menu(inputActivitate,tearoff= 0)
+inputActivitate["menu"] = inputActivitate.menu
+inputActivitate.menu.add_checkbutton(label="Sedentar" ,variable=sedentarVar)
+inputActivitate.menu.add_checkbutton(label="Activitate Redusa",variable=activitateRedusaVar)
+inputActivitate.menu.add_checkbutton(label="Activ",variable=activVar)
+inputActivitate.menu.add_checkbutton(label="Foarte Activ",variable=fActivVar)
 
-    print('Pentru a ', Scop, 'obiectivele calorile ar trebui sa fie ', int(calori), '!')
+#VariabileScop
+slabireVar=StringVar()
+mentinereVar=StringVar()
+ingrasareVar=StringVar()
 
+inputScop = Menubutton(body,text="Scop",width = 12)
+inputScop.menu = Menu(inputScop,tearoff= 0)
+inputScop["menu"] = inputScop.menu
+inputScop.menu.add_checkbutton(label="Slabire" ,variable=slabireVar)
+inputScop.menu.add_checkbutton(label="Mentinere",variable=mentinereVar)
+inputScop.menu.add_checkbutton(label="Ingrasare",variable=ingrasareVar)
 
-Așteptări(Activitatea_utilizatorului(Date_despre_utilizator()))
+#Pozitionare casete
+varsta_entry.place(x=50, y=50)
+sex_entry.place(x=70, y=100)
+greutate_entry.place(x=100, y=150)
+inaltime_entry.place(x=100, y=200)
+inputActivitate.place(x=130, y=250)
+inputScop.place(x=60, y=300)
 
+#Buton
+calculeazaButon = Button(body,text = "Calculeaza",width = "30", height = "2" )
+calculeazaButon.place(x=130,y=350)
+
+body.mainloop() #initializare GUI
